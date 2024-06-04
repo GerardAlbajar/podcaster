@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchTopPodcasts } from '../services/api';
-import { Entry } from '../services/interfaces';
-
-interface Podcast {
-  id: string;
-  title: string;
-  author: string;
-  imageUrl: string;
-}
+import { Entry, Podcast } from '../services/interfaces';
 
 const useTopPodcasts = () => {
   const [podcasts, setPodcasts] = useState<Podcast[]>([]);
@@ -23,6 +16,7 @@ const useTopPodcasts = () => {
           title: entry["im:name"].label,
           author: entry["im:artist"].label,
           imageUrl: entry["im:image"][2].label,
+          description: entry.summary.label,
         }));
         setPodcasts(podcastEntries);
       } catch (error) {
