@@ -13,10 +13,16 @@ const PodcastEpisodesViewer: React.FC<PodcastEpisodesViewerProps> = ({ episodes 
     const [selectedEpisode, setSelectedEpisode] = useState<PodcastEpisode | null>(null);
     const navigate = useNavigate();
 
-    const millisToMinutesAndSeconds = (millis: number) => {
-        const minutes = Math.floor(millis / 60000);
-        const seconds = ((millis % 60000) / 1000).toFixed(0) as never;
-        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    const millisToMinutesAndSecondsAndHours = (millis: number) => {
+        let seconds: string | number = parseInt(((millis / 1000) % 60).toString())
+        let minutes: string | number = parseInt(((millis / (1000 * 60)) % 60).toString())
+        let hours: string | number = parseInt(((millis / (1000 * 60 * 60)) % 24).toString());
+
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+        
+        return hours !== "00" ? hours + ":" + minutes + ":" + seconds : minutes + ":" + seconds;
     }
 
     useEffect(() => {
@@ -56,7 +62,7 @@ const PodcastEpisodesViewer: React.FC<PodcastEpisodesViewerProps> = ({ episodes 
                     >
                         <TableCell><p>{episode.trackName}</p></TableCell>
                         <TableCell>{new Date(episode.releaseDate).toLocaleDateString()}</TableCell>
-                        <TableCell>{episode?.trackTimeMillis ? millisToMinutesAndSeconds(episode.trackTimeMillis) : '-'}</TableCell>
+                        <TableCell>{episode?.trackTimeMillis ? millisToMinutesAndSecondsAndHours(episode.trackTimeMillis) : '-'}</TableCell>
                     </TableRow>
                 ))}
             </tbody>
