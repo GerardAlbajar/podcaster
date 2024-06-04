@@ -1,53 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import useTopPodcasts from '../hooks/useTopPodcasts';
+import React, { useEffect, useState } from 'react';
 import PodcastCardList from '../components/PodcastCardList/PodcastCardList';
 import Loading from '../components/Loading/Loading';
 import SearchBar from '../components/SearchBar/SearchBar';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePodcastContext } from '../context/MyContext';
 
 const CardListPage: React.FC = () => {
-    const { podcasts, loading, error } = useTopPodcasts();
-    const [filteredPodcasts, setFilteredPodcasts] = useState(podcasts);
-    const location = useLocation();
-    const navigate = useNavigate();
+  const { podcasts, loading, error } = usePodcastContext();
+  const [filteredPodcasts, setFilteredPodcasts] = useState(podcasts);
 
-    const handleSearch = (query: string) => {
-        const searchParams = new URLSearchParams(location.search);
-        if (query) {
-        searchParams.set('query', query);
-        } else {
-        searchParams.delete('query');
-        }
-        navigate(`${location.pathname}?${searchParams.toString()}`);
-    };
-
-    useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const query = queryParams.get('query');
-        if (query) {
-        const filtered = podcasts.filter(podcast =>
-            podcast.title.toLowerCase().includes(query.toLowerCase())
-        );
-        setFilteredPodcasts(filtered);
-        } else {
-        setFilteredPodcasts(podcasts);
-        }
-    }, [podcasts, location.search]);
-
-    if (loading) {
-        return <Loading />;
+  const handleSearch = (query: string) => {
+    if (query) {
+      const filtered = podcasts.filter(podcast =>
+        podcast.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredPodcasts(filtered);
+    } else {
+      setFilteredPodcasts(podcasts);
     }
+  };
 
-    if (error) {
-        return <div>{error}</div>;
-    }
+  useEffect(() => {
+    if(!podcasts) return
+    setFilteredPodcasts(podcasts);
+  }, [podcasts]);
 
-    return (
-        <section>
-            <SearchBar onSearch={handleSearch} podcastListResultsNumber={filteredPodcasts.length}/>
-            <PodcastCardList podcastsList={filteredPodcasts} />
-        </section>
-    );
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  return (
+    <div>
+      <SearchBar onSearch={handleSearch} podcastListResultsNumber={filteredPodcasts?.length} />
+      <PodcastCardList podcastsList={filteredPodcasts} />
+    </div>
+  );
 };
 
 export default CardListPage;
