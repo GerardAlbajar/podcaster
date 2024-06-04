@@ -7,7 +7,7 @@ export const TableContainer = styled.div`
 export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.shadows.standard};
 `;
 
 export const TableHeader = styled.th`
@@ -39,7 +39,7 @@ export const TableCell = styled.td`
   padding: 16px;
   p {
     margin: 0;
-    color: #3878ae;
+    color: ${props => props.theme.colors.primary};
   }
 
   @media screen and (max-width: 768px) {

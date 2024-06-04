@@ -4,14 +4,14 @@ export const PodcastDetailCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: ${props => props.theme.spacing.medium};
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.shadows.standard};
   transition: box-shadow 0.3s ease;
   img {
     width: 200px;
     heigth: 200px;
-    margin-bottom: 20px;
+    margin-bottom: ${props => props.theme.spacing.medium};
   }
 
   @media screen and (max-width: 768px) {
@@ -25,7 +25,7 @@ export const PodcastDetailCardSection = styled.div`
   align-items: flex-start;
   width: 100%;
   border-top: 1px solid #dbdbdb;
-  padding: 20px;
+  padding: ${props => props.theme.spacing.medium};
   gap: 5px;
 
   &:(not:last-child) {
