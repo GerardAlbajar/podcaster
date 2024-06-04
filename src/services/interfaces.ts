@@ -3,6 +3,7 @@ export interface Podcast {
   title: string;
   author: string;
   imageUrl: string;
+  description: string;
 }
 
 export interface Image {
@@ -108,6 +109,7 @@ export interface PodcastEpisode {
     artistName: string;
     collectionName: string;
     episodeUrl: string;
+    collectionId: string;
 }
 
 export interface PodcastDetail {

@@ -56,35 +56,35 @@ const EpisodesWrapper = styled.div`
 `;
 
 const PodcastDetailPage: React.FC = () => {
-  const { episodeId } = useParams<Record<string, string>>();
-  const { podcastDetail, episodes, loading, error } = usePodcastDetail();
+    const { episodeId } = useParams<Record<string, string>>();
+    const { podcastDetail, episodes, loading, error } = usePodcastDetail();
+    
+    if (loading) {
+        return <Loading />;
+    }
 
-  if (loading) {
-    return <Loading />;
-  }
+    if (error) {
+        return <div>{error}</div>;
+    }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  return (
-    <PodcastDetailPageStyled>
-      <PodcastDetailCard
-        author={podcastDetail.artistName}
-        description={podcastDetail.description || 'Description not found'}
-        imageUrl={podcastDetail.artworkUrl600}
-        title={podcastDetail.collectionName}
-      />
-      <EpisodesWrapper>
-        {!episodeId && (
-          <EpisodesCount>
-            Episodes: {episodes.length}
-          </EpisodesCount>
-        )}
-        <PodcastEpisodesViewer episodes={episodes} />
-      </EpisodesWrapper>
-    </PodcastDetailPageStyled>
-  );
+    return (
+        <PodcastDetailPageStyled>
+            <PodcastDetailCard
+                author={podcastDetail.artistName}
+                description={podcastDetail.description || 'Description not found'}
+                imageUrl={podcastDetail.artworkUrl600}
+                title={podcastDetail.collectionName}
+            />
+            <EpisodesWrapper>
+                {!episodeId && (
+                <EpisodesCount>
+                    Episodes: {episodes?.length}
+                </EpisodesCount>
+                )}
+                <PodcastEpisodesViewer episodes={episodes} />
+            </EpisodesWrapper>
+        </PodcastDetailPageStyled>
+    );
 };
 
 export default PodcastDetailPage;
