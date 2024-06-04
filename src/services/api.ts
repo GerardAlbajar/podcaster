@@ -24,7 +24,6 @@ export const fetchPodcastDetail = async (podcastId: string): Promise<PodcastDeta
 
         if (response.status === 200) {
             const data = JSON.parse(response.data.contents);
-            console.log(data)
             return data;
         } else {
             toast.error('Network response was not ok.');
