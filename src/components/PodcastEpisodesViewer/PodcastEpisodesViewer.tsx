@@ -34,28 +34,32 @@ const PodcastEpisodesViewer: React.FC<PodcastEpisodesViewerProps> = ({ episodes 
         return <EpisodeDetail episode={selectedEpisode} />;
     }
 
+    if(!episodes?.length) {
+        return <p>No episodes found</p>
+    }
+
     return (
         <Table>
-        <thead>
-            <tr>
-            <TableHeader>Title</TableHeader>
-            <TableHeader>Date</TableHeader>
-            <TableHeader>Duration</TableHeader>
-            </tr>
-        </thead>
-        <tbody>
-            {episodes.map((episode, index) => (
-                <TableRow
-                    key={episode.trackId}
-                    style={{ backgroundColor: index % 2 !== 0 ? '#f9f9f9' : '#fff' }}
-                    onClick={() => handleClick(episode.trackId)}
-                >
-                    <TableCell><p>{episode.trackName}</p></TableCell>
-                    <TableCell>{new Date(episode.releaseDate).toLocaleDateString()}</TableCell>
-                    <TableCell>{episode?.trackTimeMillis ? millisToMinutesAndSeconds(episode.trackTimeMillis) : '-'}</TableCell>
-                </TableRow>
-            ))}
-        </tbody>
+            <thead>
+                <tr>
+                <TableHeader>Title</TableHeader>
+                <TableHeader>Date</TableHeader>
+                <TableHeader>Duration</TableHeader>
+                </tr>
+            </thead>
+            <tbody>
+                {episodes.map((episode, index) => (
+                    <TableRow
+                        key={episode.trackId}
+                        style={{ backgroundColor: index % 2 !== 0 ? '#f9f9f9' : '#fff' }}
+                        onClick={() => handleClick(episode.trackId)}
+                    >
+                        <TableCell><p>{episode.trackName}</p></TableCell>
+                        <TableCell>{new Date(episode.releaseDate).toLocaleDateString()}</TableCell>
+                        <TableCell>{episode?.trackTimeMillis ? millisToMinutesAndSeconds(episode.trackTimeMillis) : '-'}</TableCell>
+                    </TableRow>
+                ))}
+            </tbody>
         </Table>
     );
 };
