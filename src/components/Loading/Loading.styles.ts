@@ -13,7 +13,7 @@ const LoadingStyled = styled.div`
   }
   .spinner div {
     position: absolute;
-    border: 4px solid #7288ff;
+    border: 4px solid ${props => props.theme.colors.secondary};
     opacity: 1;
     border-radius: 50%;
     animation: spinner 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;

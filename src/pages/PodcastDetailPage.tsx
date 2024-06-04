@@ -15,7 +15,7 @@ export const PodcastDetailPageStyled = styled.section`
     flex-basis: 20%;
     flex-grow: 0;
     position: sticky;
-    top: 20px;
+    top: ${props => props.theme.spacing.medium};
     align-self: flex-start;
   }
 
@@ -44,15 +44,15 @@ export const PodcastDetailPageStyled = styled.section`
 `;
 
 const EpisodesCount = styled.h3`
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  box-shadow: ${props => props.theme.shadows.standard};
+  padding: ${props => props.theme.spacing.medium};
   margin: 0;
 `;
 
 const EpisodesWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: ${props => props.theme.spacing.medium};
 `;
 
 const PodcastDetailPage: React.FC = () => {

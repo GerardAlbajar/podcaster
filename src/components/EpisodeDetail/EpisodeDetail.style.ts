@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const EpisodeDetailContainer = styled.div`
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  box-shadow: ${props => props.theme.shadows.standard};
+  padding: ${props => props.theme.spacing.medium};
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: ${props => props.theme.spacing.medium};
   h3, p {
     margin: 0
   }

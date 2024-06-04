@@ -9,7 +9,7 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.shadows.standard};
   transition: box-shadow 0.3s ease;
   align-items: center;
 

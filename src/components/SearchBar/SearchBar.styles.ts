@@ -6,7 +6,7 @@ export const SearchBarContainer = styled.div`
     align-items: center;
     justify-content: flex-end;
     .search-bar-number__wrapper {
-        background: #3878ae;
+        background: ${props => props.theme.colors.primary};
         color: #fff;
         width: fit-content;
         padding: 5px 8px;
@@ -28,7 +28,7 @@ export const StyledInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #7288ff;
+    border-color: ${props => props.theme.colors.secondary};
     box-shadow: 0 0 5px rgba(114, 136, 255, 0.5);
   }
 `;
