@@ -110,6 +110,7 @@ export interface PodcastEpisode {
     collectionName: string;
     episodeUrl: string;
     collectionId: string;
+    trackTimeMillis: number
 }
 
 export interface PodcastDetail {
