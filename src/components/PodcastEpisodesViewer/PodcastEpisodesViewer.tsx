@@ -52,7 +52,7 @@ const PodcastEpisodesViewer: React.FC<PodcastEpisodesViewerProps> = ({ episodes 
                 >
                     <TableCell><p>{episode.trackName}</p></TableCell>
                     <TableCell>{new Date(episode.releaseDate).toLocaleDateString()}</TableCell>
-                    <TableCell>{episode.trackTimeMillis ? millisToMinutesAndSeconds(episode.trackTimeMillis) : '-'}</TableCell>
+                    <TableCell>{episode?.trackTimeMillis ? millisToMinutesAndSeconds(episode.trackTimeMillis) : '-'}</TableCell>
                 </TableRow>
             ))}
         </tbody>
