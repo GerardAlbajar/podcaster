@@ -17,14 +17,12 @@ export const fetchTopPodcasts = async (): Promise<{ feed: { entry: Entry[] } }> 
 
 export const fetchPodcastDetail = async (podcastId: string): Promise<PodcastDetail> => {
     const DETAIL_URL = `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=30`;
-    const PROXY_URL = `https://api.allorigins.win/get?url=${encodeURIComponent(DETAIL_URL)}`;
 
     try {
-        const response = await axios.get(PROXY_URL);
+        const response = await axios.get(DETAIL_URL);
 
         if (response.status === 200) {
-            const data = JSON.parse(response.data.contents);
-            return data;
+            return response.data;
         } else {
             toast.error('Network response was not ok.');
             throw new Error('Network response was not ok.');
