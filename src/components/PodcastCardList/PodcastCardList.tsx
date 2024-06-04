@@ -14,7 +14,7 @@ interface PodcastCardListProps {
 }
 
 const PodcastCardList: React.FC<PodcastCardListProps> = ({ podcastsList }) => {
-    if (!podcastsList.length) {
+    if (!podcastsList?.length) {
         return <p>No podcasts found</p>
     }
     return (

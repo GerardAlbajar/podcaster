@@ -14,7 +14,7 @@ const PodcastEpisodesViewer: React.FC<PodcastEpisodesViewerProps> = ({ episodes 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (episodeId && episodes.length) {
+    if (episodeId && episodes?.length) {
       const foundEpisode = episodes.find(episode => episode.trackId.toString() === episodeId);
       setSelectedEpisode(foundEpisode || null);
     }
